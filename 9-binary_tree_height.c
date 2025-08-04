@@ -12,12 +12,15 @@
 
 size_t binary_tree_height(const binary_tree_t *tree)
 {
+	size_t left; /* stores left subtree height */
+	size_t right; /* stores right subtree height */
+
 	if (tree == NULL) /* base case */
 		return (0);
 
 /* recursively calc the height of left and right subtrees */
-	size_t left = binary_tree_height(tree->left);
-	size_t right = binary_tree_height(tree->right);
+	left = binary_tree_height(tree->left);
+	right = binary_tree_height(tree->right);
 
 	if (left > right) /* return the max height found plus 1 for root node */
 		return (left + 1);
