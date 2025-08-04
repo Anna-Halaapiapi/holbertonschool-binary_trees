@@ -1,0 +1,1 @@
+The purpose of this README is to provide information on the files & directories contained in the holbertonschool-binary_trees repo.
