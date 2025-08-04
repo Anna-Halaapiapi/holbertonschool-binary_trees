@@ -27,7 +27,7 @@ binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 
 	if (parent->left != NULL) /* if left child exists */
 	{
-		parent->left = oldleft; /* store old left child node */
+		oldleft = parent->left; /* store old left child node */
 		parent->left = newnode; /* update required pointers */
 		newnode->left = oldleft;
 		newnode->right = NULL;
