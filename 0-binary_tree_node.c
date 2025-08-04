@@ -1,5 +1,6 @@
 #include "binary_trees.h"
 #include <stdio.h>
+#include <stdlib.h> /* for malloc, NULL */
 
 /**
  * binary_tree_node - creates a binary tree node
