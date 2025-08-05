@@ -13,22 +13,30 @@
 binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
 
-	binary_tree_t *root = node->parent;
+	binary_tree_t *parent; /* to store node's parent */
+	binary_tree_t *uncle; /* to store uncle node */
 
 	if (node == NULL || node->parent == NULL)
 		return (NULL);
 
+	/* find node's parent */
+	parent = node->parent;
 
 	/* move node to node's parent */
 	node = node->parent;
 
-	/* move node to node's parent's parent */
+	/* move node to node's grandparent */
 	node = node->parent;
 
-	/* return sibling */
-	if (node->left == root)
-		return (node->right);
+	/* find and return node's uncle */
+	if (node->left == parent)
+		uncle = node->right;
 
 	else
-		return (node->left);
+		uncle = node->left;
+
+	if (uncle == NULL)
+		return (NULL);
+	else
+		return (uncle);
 }
