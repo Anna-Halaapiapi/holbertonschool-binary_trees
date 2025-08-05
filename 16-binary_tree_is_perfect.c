@@ -4,7 +4,7 @@
 #include <stddef.h> /* for size_t */
 
 /**
- * binary_tree_height - find depth of a binary tree
+ * depth - find depth of a binary tree
  * @tree: pointer to root node of tree
  *
  * Return: deoth of tree or 0 if tree is NULL
@@ -65,7 +65,7 @@ int is_perf_recur(const binary_tree_t *tree, int d)
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	/* find depth of tree */
-	int d = binary_tree_height(tree);
+	int d = depth(tree);
 
 	return (is_perf_recur(tree, d));
 }
