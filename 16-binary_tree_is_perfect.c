@@ -35,28 +35,29 @@ size_t binary_tree_height(const binary_tree_t *tree)
 }
 
 /**
- * binary_tree_depth - measures the depth of a node in a binary tree
+ * is_perf_recur - recursive function to check if tree is perfect or not
  * @tree: pointer to node to measure depth
- *
+ * @d: depth
  * Return: depth of node or 0 if tree is NULL
  */
 
-size_t binary_tree_depth(const binary_tree_t *tree)
+int is_perf_recur(const binary_tree_t *tree, int d)
 {
-	size_t depth = 0; /* store depth of node */
-	binary_tree_t *currentnode; /* used to store current node */
 
 	if (tree == NULL)
 		return (0);
 
-	while (tree->parent != NULL) /* traverse path to root */
-	{
-		currentnode = tree->parent;
-		tree = currentnode;
-		depth = depth + 1; /* calc depth */
-	}
+	/* if node is leaf, check if it is at depth d */
+	if (tree->left == NULL && tree->right == NULL)
+		return (d == 1);
 
-	return (depth);
+	/* if internal node doesn't have 2 children, return false */
+	if (tree->left == NULL || tree->right == NULL)
+		return (0);
+
+	/* check left and right subtree */
+	return is_perf_recur(tree->left, d-1)
+		&& is_perf_recur(tree->right, d-1);
 }
 
 /**
@@ -68,23 +69,8 @@ size_t binary_tree_depth(const binary_tree_t *tree)
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	size_t height = 0; /* store height of tree */
-	size_t depth = 0; /* store depth of leaves */
+	/* find depth of tree */
+	int d = binary_tree_height(tree);
 
-	if (tree == NULL)
-		return (0);
-
-	/* check height of tree */
-	height = binary_tree_height(tree);
-
-	/* if node is leaf - check if it's depth matches height */
-	if (tree->left == NULL && tree->right == NULL)
-		return (binary_tree_depth(tree) == height);
-
-	/* if height and depth don't match - return false */
-	if (height != depth)
-		return (0);
-	else
-		return (1);
-
+	return (is_perf_recur(tree, d));
 }
