@@ -15,11 +15,12 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 
 	binary_tree_t *root = node->parent;
 
-	/* move node to node's parent */
-	node = node->parent;
-
 	if (node == NULL || node->parent == NULL)
 		return (NULL);
+
+
+	/* move node to node's parent */
+	node = node->parent;
 
 	/* move node to node's parent's parent */
 	node = node->parent;
