@@ -12,12 +12,20 @@
 
 size_t binary_tree_nodes(const binary_tree_t *tree)
 {
-	if (tree == NULL) /* base case */
+	size_t count = 0;
+
+/* base case */
+	if (tree == NULL)
 		return (0);
 
+/* count 1 for each node with at least 1 child found */
 	if (tree->left != NULL || tree->right != NULL)
-		return (1); /* count 1 for each node with at least 1 child */
+		count = 1;
 
-	/* return total nodes found with at least 1 child */
-	return (binary_tree_nodes(tree->left) + binary_tree_nodes(tree->right));
+/* recursively check left & right subtrees */
+	count = count + binary_tree_nodes(tree->left);
+	count = count + binary_tree_nodes(tree->right);
+
+/* return number of nodes found */
+	return (count);
 }
