@@ -52,7 +52,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 	/* calc heights */
 	leftsub = (binary_tree_height(tree->left));
-	rightsub = (binary_tree_height(tree->right);
+	rightsub = (binary_tree_height(tree->right));
 
     /* calc & return balance factor of tree */
 	balfac = leftsub - rightsub;
