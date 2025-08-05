@@ -4,32 +4,27 @@
 #include <stddef.h> /* for size_t */
 
 /**
- * binary_tree_height - measures the height of a binary tree
+ * binary_tree_height - find depth of a binary tree
  * @tree: pointer to root node of tree
  *
- * Return: height of tree or 0 if tree is NULL
+ * Return: deoth of tree or 0 if tree is NULL
  */
 
-size_t binary_tree_height(const binary_tree_t *tree)
+int depth(const binary_tree_t *tree)
 {
-	size_t left; /* stores left subtree height */
-	size_t right; /* stores right subtree height */
+	int left = 0; /* store depth of left subtree */
+	int right = 0; /* store depth of right subtree */
 
-	if (tree == NULL) /* base case */
+	if (tree == NULL)
 		return (0);
 
-	if (tree->left == NULL && tree->right == NULL)
-		return (0);
+	left = depth(tree->left); /* check depth left subtree */
+	right = depth(tree->right); /* check depth right subtree */
 
-/* recursively calc the height of left and right subtrees */
-	else
-	{
-	left = binary_tree_height(tree->left);
-	right = binary_tree_height(tree->right);
-	}
-
-	if (left > right) /* return the max height found */
+	/* return largest depth found */
+	if (left > right)
 		return (left + 1);
+
 	else
 		return (right + 1);
 }
@@ -45,7 +40,7 @@ int is_perf_recur(const binary_tree_t *tree, int d)
 {
 
 	if (tree == NULL)
-		return (0);
+		return (1);
 
 	/* if node is leaf, check if it is at depth d */
 	if (tree->left == NULL && tree->right == NULL)
@@ -56,8 +51,8 @@ int is_perf_recur(const binary_tree_t *tree, int d)
 		return (0);
 
 	/* check left and right subtree */
-	return is_perf_recur(tree->left, d-1)
-		&& is_perf_recur(tree->right, d-1);
+	return (is_perf_recur(tree->left, d - 1)
+		&& is_perf_recur(tree->right, d - 1));
 }
 
 /**
