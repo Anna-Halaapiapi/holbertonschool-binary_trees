@@ -64,11 +64,13 @@ int is_perf_recur(const binary_tree_t *tree, int d)
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
+
+	int d = 0; /* store depth of tree */
+
 	if (tree == NULL)
 		return (0);
 
-	/* find depth of tree */
-	int d = depth(tree);
+	d = depth(tree); /* find depth of tree */
 
 	return (is_perf_recur(tree, d));
 }
